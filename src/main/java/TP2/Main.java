@@ -1,6 +1,7 @@
 package TP2;
 
 import java.nio.file.Paths;
+
 import java.io.IOException;
 
 import org.antlr.v4.runtime.CharStream;
@@ -8,9 +9,11 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
 import TP2.ASD.Program;
-
-public class Main {
-  public static void main(String[] args) {
+import TP2.SymbolTable;
+public class  Main {
+	  public static SymbolTable tabsymb = new SymbolTable();
+  public static void main(String[] args) throws Exception {
+	
     try {
       // Set input
       CharStream input;
@@ -34,7 +37,7 @@ public class Main {
       Program ast = parser.program().out;
 
       // Pretty-print the program (to debug parsing, if you implemented it!)
-      // System.err.println(ast.pp());
+      System.err.println(ast.pp());
 
       // Compute LLVM IR from the ast
       try {

@@ -23,9 +23,12 @@ public class SymbolTable {
   public static class VariableSymbol extends Symbol {
     Type type;
 
-    VariableSymbol(Type type, String ident) {
+    public VariableSymbol(Type type, String ident) {
       this.type = type;
       this.ident = ident;
+    }
+    public Type getType() {
+    	return this.type;
     }
 
     @Override public boolean equals(Object obj) {

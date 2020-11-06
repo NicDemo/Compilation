@@ -1,5 +1,7 @@
 package TP2;
 
+import TP2.ASD.Type;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -63,7 +65,7 @@ public class Llvm {
 
       return r.toString();
     }
-  }
+  }// fin class IR
 
   // Returns a new empty list of instruction, handy
   static public List<Instruction> empty() {
@@ -82,14 +84,15 @@ public class Llvm {
     }
   }
 
-  // TODO : other types
+  static public class Text extends Type{
+      public String toString() {return "void";}
+  }
 
 
   // LLVM IR Instructions
   static public abstract class Instruction {
     public abstract String toString();
   }
-
   static public class Add extends Instruction {
     Type type;
     String left;
@@ -107,6 +110,53 @@ public class Llvm {
       return lvalue + " = add " + type + " " + left + ", " + right +  "\n";
     }
   }
+  static public class Mul extends Instruction {
+	  Type type;
+	    String left;
+	    String right;
+	    String lvalue;
+
+	    public Mul(Type type, String left, String right, String lvalue) {
+	      this.type = type;
+	      this.left = left;
+	      this.right = right;
+	      this.lvalue = lvalue;
+	    }
+	    public String toString() {
+	    	  return lvalue + " = mul " + type + " " + left + ", " + right +  "\n";
+	    }
+  }
+  static public class Div extends Instruction {
+	  Type type;
+	    String left;
+	    String right;
+	    String lvalue;
+
+	    public Div(Type type, String left, String right, String lvalue) {
+	      this.type = type;
+	      this.left = left;
+	      this.right = right;
+	      this.lvalue = lvalue;
+	    }
+	    public String toString() {
+	    	  return lvalue + " = Div " + type + " " + left + ", " + right +  "\n";
+	    }
+  }
+  
+  static public class Sub extends Instruction { Type type;
+  String left;
+  String right;
+  String lvalue;
+
+  public Sub(Type type, String left, String right, String lvalue) {
+    this.type = type;
+    this.left = left;
+    this.right = right;
+    this.lvalue = lvalue;
+  }
+  public String toString() {
+  	  return lvalue + " = Sub " + type + " " + left + ", " + right +  "\n";
+  }}
 
   static public class Return extends Instruction {
     Type type;
@@ -121,6 +171,35 @@ public class Llvm {
       return "ret " + type + " " + value + "\n";
     }
   }
+  static public class Affect extends Instruction {
+	Type type;
+	String ident;
+	String value;
+
+
+	public Affect (Type type, String ident, String value) {
+		this.type = type;
+		this.ident = ident;
+		this.value = value;
+	}
+
+      public String toString() {
+		return "store " + type + " " + value + ", " + type + "* %" + ident +  "\n";
+	}
+}
+
+ static public class Decl extends Instruction{
+    Type type;
+    String ident;
+     public Decl(Type type, String ident){
+         this.type=type;
+         this.ident=ident;
+     }
+     @Override
+     public String toString() {
+       return "%" + ident + " := alloca " + type +  "\n";
+     }
+ }
 
   // TODO : other instructions
 }

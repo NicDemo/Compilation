@@ -22,10 +22,18 @@ fragment ASCII  : ~('\n'|'"');
 LP    : '(' ; // Left parenthesis
 RP    : ')' ;
 PLUS      : '+'      ;
+VIRGULE : ',';
 
 // TODO : other keywords
+SUB : '-' ;
+MUL :'*';
+DIV :'/';
+
+AFFECT : ':=';
+
 
 // other tokens (no conflict with keywords in VSL)
 IDENT   : LETTER (LETTER|DIGIT)*;
 TEXT    : '"' (ASCII)* '"' { setText(getText().substring(1, getText().length() - 1)); };
 INTEGER : (DIGIT)+ ;
+INT_DECLARATION : 'INT';
