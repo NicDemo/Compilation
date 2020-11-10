@@ -50,7 +50,7 @@ expression returns [TP2.ASD.Expression out]
 
 factor returns [TP2.ASD.Expression out]
     : p=primary { $out = $p.out; }
-    //:id=IDENT {$out = new TP2.ASD.VariableExpression($id.getText());}
+    :id=IDENT {$out = new TP2.ASD.VariableExpression($id.getText());}
     // TODO : that's all?
     ;
 

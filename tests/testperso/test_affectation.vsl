@@ -1,6 +1,1 @@
-{INT a
-a:=4
-{
-INT a
-a:=5}
-}
+{INT a a:=4{INT a a:=5}}
