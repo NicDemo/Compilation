@@ -28,9 +28,15 @@ instruction returns [TP2.ASD.Instruction out]
     (d=declaration {decs=$d.out;}) (i=instruction{instructions.add($i.out);})*
     {$out=new TP2.ASD.Bloc(decs,instructions);}
     ACCOLADE_FERME
-	|
+	//IF
+	| {ArrayList<TP2.ASD.Instruction> if_inst = new ArrayList<>(); ArrayList<TP2.ASD.Instruction> else_inst=new ArrayList<>();int a=0;}
+	IF cond=expression THEN
+	(i= instruction {if_inst.add($i.out);})*
+	//(ELSE (i1=instruction {else_inst.add($i1.out);a=a+1;})* )?
+	FI // pas encore implementer{if (a==0){$out=new TP2.ASD.IF($cond.out,if_inst);}else{$out=TP2.ASD.ELSE($cond.out,else_inst);}}
+	{$out=new TP2.ASD.IF($cond.out,if_inst);}
 	// Affectation
-	ident =IDENT AFFECT e = expression {$out=new TP2.ASD.AffectationInstruction($ident.getText(),$e.out); }
+	|ident =IDENT AFFECT e = expression {$out=new TP2.ASD.AffectationInstruction($ident.getText(),$e.out); }
    ;
 
 declaration returns [ArrayList<TP2.ASD.DeclInstruction> out]
@@ -50,7 +56,7 @@ expression returns [TP2.ASD.Expression out]
 
 factor returns [TP2.ASD.Expression out]
     : p=primary { $out = $p.out; }
-    :id=IDENT {$out = new TP2.ASD.VariableExpression($id.getText());}
+    |id=IDENT {$out = new TP2.ASD.VariableExpression($id.getText());}
     // TODO : that's all?
     ;
 

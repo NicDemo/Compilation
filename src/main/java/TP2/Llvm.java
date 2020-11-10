@@ -201,6 +201,79 @@ public class Llvm {
        return "%" + ident + " := alloca " + type +  "\n";
      }
  }
+ static public class Load extends Instruction {
+         Type type;
+         String ident;
+         String lvalue;
+
+		public Load(Type type, String ident, String lvalue) {
+             this.type = type;
+             this.ident = ident;
+             this.lvalue = lvalue;
+         }
+
+         public String toString() {
+             return lvalue + " = load " + type.toString() + ", " + type + "* %"+ ident + "\n";
+         }
+
+ }
+ public static class Label extends Instruction{
+      String labelo;
+      public Label(String labelo){
+          this.labelo=labelo;
+        }
+
+
+     @Override
+     public String toString() {
+
+         return labelo+"\n";
+     }
+ }
+ public static class Br extends  Instruction{
+     Type type;
+     String condition_value;
+     String label_1;
+     String label_2;
+
+     public Br(String condition_value, String label_1, String label_2) {
+         this.type = new Llvm.Int();
+         this.condition_value = condition_value;
+         this.label_2 = label_2;
+         this.label_1 = label_1;
+     }
+     public Br(String label_1) {
+         this.type = new Llvm.Int();
+         this.label_2 = "ABSENT";
+         this.condition_value = "ABSENT";
+         this.label_1 = label_1;
+     }
+
+     @Override
+     public String toString() {
+         String to_return="br ";
+         if(this.label_2.equals("ABSENT")){
+        to_return += label_1+ "\n";
+        return to_return;
+         }
+         to_return+=type.toString()+" "+condition_value+", label"+ label_1+", label" +label_2+"\n";
+             return to_return;
+     }
+ }
+ public static class Icmp extends  Instruction{
+    String cond_value;
+    Type type;
+    String lvalue;
+    public Icmp(Type type ,String eq ,String lvalue){
+        this.cond_value=eq;
+        this.lvalue=lvalue;
+        this.type=type;
+    }
+     @Override
+     public String toString() {
+         return lvalue+" icmp ne "+type.toString()+" "+cond_value+","+" 0\n";     }
+ }
+
 
   // TODO : other instructions
 

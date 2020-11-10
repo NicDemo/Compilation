@@ -1,13 +1,10 @@
 package TP2.ASD;
 
-import TP2.Main;
-import TP2.SymbolTable;
-import TP2.TypeException;
-import TP2.Utils;
+import TP2.*;
 
-public class VariableExpression extends Expression{
-    String id;
-    VariableExpression(String id){
+public class VariableExpression extends TP2.ASD.Expression{
+    public String id;
+    public VariableExpression(String id){
         this.id=id;
     }
     @Override
@@ -17,8 +14,12 @@ public class VariableExpression extends Expression{
 
     @Override
     public RetExpression toIR() throws TypeException {
-        String result = new TP2.Utils.newtmp();
+        String tmp = TP2.Utils.newtmp();
         SymbolTable.VariableSymbol symb = (SymbolTable.VariableSymbol) Main.tabsymb.lookup(id);
-        return null;
+        RetExpression retExpression = new RetExpression(new Llvm.IR(Llvm.empty(), Llvm.empty()),symb.getType(),tmp);
+        Llvm.Instruction inst = new Llvm.Load(symb.getType().toLlvmType(), id, tmp);
+        retExpression.ir.appendCode(inst);
+        return retExpression;
+
     }
 }

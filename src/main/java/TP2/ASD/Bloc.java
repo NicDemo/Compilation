@@ -5,6 +5,7 @@ import TP2.Utils;
 import jdk.jshell.execution.Util;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bloc extends  Instruction {
     private ArrayList<DeclInstruction> declarations = new ArrayList<>();
@@ -21,6 +22,7 @@ public class Bloc extends  Instruction {
             pp+= d.pp()+"\n";
         }
         for (Instruction i : instructions){
+            Objects.requireNonNull(i);
             pp+=i.pp()+"\n";
         }
         return pp+"}";

@@ -1,1 +1,1 @@
-{INT a a:=4{INT a a:=5}}
+{INT 1 IF 1 THEN 1+1 FI}

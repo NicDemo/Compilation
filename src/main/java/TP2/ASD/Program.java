@@ -17,6 +17,7 @@ public class Program {
     public String pp() {
         String s="";
         for(Instruction p : instructions) {
+
            s=s+p.pp()+"\n";
         }
         return s;

@@ -1,5 +1,7 @@
 TP2/ASD/DeclInstruction.java
  TP2.ASD.DeclInstruction
+TP2/ASD/IF.java
+ TP2.ASD.IF
 TP2/ASD/MulExpression.java
  TP2.ASD.MulExpression
 TP2/ASD/Program.java
@@ -31,17 +33,23 @@ TP2/ASD/Type.java
  TP2.ASD.Type
 TP2/ASD/SubExpression.java
  TP2.ASD.SubExpression
+TP2/ASD/VariableExpression.java
+ TP2.ASD.VariableExpression
 TP2/ASD/AddExpression.java
  TP2.ASD.AddExpression
 TP2/Llvm.java
  TP2.Llvm
  TP2.Llvm$Add
  TP2.Llvm$Affect
+ TP2.Llvm$Br
  TP2.Llvm$Decl
  TP2.Llvm$Div
  TP2.Llvm$IR
+ TP2.Llvm$Icmp
  TP2.Llvm$Instruction
  TP2.Llvm$Int
+ TP2.Llvm$Label
+ TP2.Llvm$Load
  TP2.Llvm$Mul
  TP2.Llvm$Return
  TP2.Llvm$Sub

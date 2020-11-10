@@ -28,6 +28,10 @@ VIRGULE : ',';
 SUB : '-' ;
 MUL :'*';
 DIV :'/';
+IF : 'IF';
+ELSE : 'ELSE';
+FI:'FI';
+THEN : 'THEN';
 
 AFFECT : ':=';
 ACCOLADE_OUVERT : '{';
