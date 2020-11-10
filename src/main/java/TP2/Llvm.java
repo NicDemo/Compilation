@@ -1,5 +1,6 @@
 package TP2;
 
+import TP2.ASD.DeclInstruction;
 import TP2.ASD.Type;
 
 import java.util.List;
@@ -202,4 +203,5 @@ public class Llvm {
  }
 
   // TODO : other instructions
+
 }

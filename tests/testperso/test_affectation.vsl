@@ -1,1 +1,6 @@
-INT n,i,b
+{INT a
+a:=4
+{
+INT a
+a:=5}
+}

@@ -30,6 +30,8 @@ MUL :'*';
 DIV :'/';
 
 AFFECT : ':=';
+ACCOLADE_OUVERT : '{';
+ACCOLADE_FERME : '}';
 
 
 // other tokens (no conflict with keywords in VSL)
