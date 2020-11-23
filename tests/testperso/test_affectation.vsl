@@ -1,1 +1,1 @@
-{INT 1 IF 1 THEN 1+1 FI}
+{WHILE 2 DO {INT a,b a:=0 b:=a+0} DONE}

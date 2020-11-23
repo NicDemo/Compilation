@@ -10,20 +10,26 @@ import java.util.Objects;
 
 public class IF extends Instruction{
     Expression cond ;
-    ArrayList<Instruction> instruction = new ArrayList<>();
-    public IF (Expression exp,ArrayList<Instruction> inst){
+   Instruction instruction ;
+    Instruction instruction2;
+    public IF (Expression cond,Instruction instruction , Instruction instruction2){
         this.cond=cond;
-        this.instruction = inst;
+        this.instruction = instruction;
+        this.instruction2=instruction2;
     }
     @Override
     public String pp() {
         String rez ="";
         rez+= Utils.indent(0)+"IF("+this.cond.pp()+">0) { \n";
-        rez+=Utils.indent(1)+"THEN"+Utils.indent(2);
+        rez+=Utils.indent(1)+"THEN \n";
+        rez+=Utils.indent(2);
 
-        for (Instruction i : instruction){
-            rez+=i.pp()+"\n";
-        }
+            if(this.instruction!=null)
+            rez+=instruction.pp()+"\n";
+            if(instruction2!=null){
+
+                rez+="ELSE \n"+Utils.indent(2)+instruction2.pp();}
+
         Utils.indent(0);
         rez+="FI \n";
         return rez;
@@ -38,22 +44,30 @@ public class IF extends Instruction{
         Llvm.Instruction icmp_result = new Llvm.Icmp(expReturn.type.toLlvmType(), expReturn.result, icmp_tmp);
         ret.ir.appendCode(icmp_result);
         // instruction de branchement
-        String label_true = Utils.newlab("then");
-        String label_false = Utils.newlab("fi");
-        //branchement
-        Llvm.Instruction br_result = new Llvm.Br(icmp_tmp, label_true, label_false);
+        String label_then = Utils.newlab(" then");
+        String label_else = Utils.newlab(" else");
+        String label_fi = Utils.newlab(" fi");
+
+        //instruction de branchement
+        Llvm.Instruction br_result = new Llvm.Br(icmp_tmp, label_then, label_else);
         ret.ir.appendCode(br_result);
-        Llvm.Label labelT= new Llvm.Label(label_true);
+
+        Llvm.Label labelT= new Llvm.Label(label_then);
         ret.ir.appendCode(labelT);
         //then
-        for(Instruction p : instruction){
-        ret.ir.append(p.toIR().ir);}
-        //fin if
-        //branchement
-        Llvm.Instruction False = new Llvm.Br(label_false);
-        ret.ir.appendCode(False);
-        Llvm.Label labelF= new Llvm.Label(label_false);
-        ret.ir.appendCode(labelF);
+        ret.ir.append(instruction.toIR().ir);
+        //branchement pour dodge le else apres avoir effectuer le if
+        Llvm.Br dodge_else = new Llvm.Br(label_fi);
+        ret.ir.appendCode(dodge_else);
+        //label else
+        Llvm.Label label_else_instruction = new Llvm.Label(label_else);
+        ret.ir.appendCode(label_else_instruction);
+        //else code de l'instruction du bloc else
+        if(this.instruction2!=null)
+            ret.ir.append(this.instruction2.toIR().ir);
+        //label fin Instruction
+        Llvm.Label label_fi_instruction = new Llvm.Label(label_fi);
+        ret.ir.appendCode(label_fi_instruction);
         return ret;
     }
 }

@@ -25,16 +25,21 @@ instruction returns [TP2.ASD.Instruction out]
     :ACCOLADE_OUVERT
     {ArrayList<TP2.ASD.DeclInstruction> decs = new ArrayList<TP2.ASD.DeclInstruction>();}
     {ArrayList<TP2.ASD.Instruction> instructions = new ArrayList<TP2.ASD.Instruction>();}
-    (d=declaration {decs=$d.out;}) (i=instruction{instructions.add($i.out);})*
+    (d=declaration {decs=$d.out;})* (i=instruction{instructions.add($i.out);})*
     {$out=new TP2.ASD.Bloc(decs,instructions);}
     ACCOLADE_FERME
-	//IF
-	| {ArrayList<TP2.ASD.Instruction> if_inst = new ArrayList<>(); ArrayList<TP2.ASD.Instruction> else_inst=new ArrayList<>();int a=0;}
-	IF cond=expression THEN
-	(i= instruction {if_inst.add($i.out);})*
-	//(ELSE (i1=instruction {else_inst.add($i1.out);a=a+1;})* )?
-	FI // pas encore implementer{if (a==0){$out=new TP2.ASD.IF($cond.out,if_inst);}else{$out=TP2.ASD.ELSE($cond.out,else_inst);}}
-	{$out=new TP2.ASD.IF($cond.out,if_inst);}
+    //IF
+      |IF cond = expression THEN  	{boolean a = false;}
+      	(i=instruction)
+      	(ELSE (i1=instruction){a=true;})?
+      	FI
+      	{if(a){
+      	    $out=new TP2.ASD.IF($cond.out,$i.out,$i1.out);
+      	}else{
+      	$out=new TP2.ASD.IF($cond.out,$i.out,null);}
+      	}
+    //WHILE
+    |WHILE (cond=expression) DO (i=instruction) DONE {$out=new TP2.ASD.While($cond.out,$i.out);}
 	// Affectation
 	|ident =IDENT AFFECT e = expression {$out=new TP2.ASD.AffectationInstruction($ident.getText(),$e.out); }
    ;

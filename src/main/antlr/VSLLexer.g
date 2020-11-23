@@ -36,6 +36,9 @@ THEN : 'THEN';
 AFFECT : ':=';
 ACCOLADE_OUVERT : '{';
 ACCOLADE_FERME : '}';
+WHILE : 'WHILE';
+DO : 'DO';
+DONE : 'DONE';
 
 
 // other tokens (no conflict with keywords in VSL)

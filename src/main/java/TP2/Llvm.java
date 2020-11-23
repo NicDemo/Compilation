@@ -236,7 +236,7 @@ public class Llvm {
      String label_1;
      String label_2;
 
-     public Br(String condition_value, String label_1, String label_2) {
+     public Br(String condition_value, String label_1, String label_2) {// on a pas le type vu qu'on va tjrs utiliser des int
          this.type = new Llvm.Int();
          this.condition_value = condition_value;
          this.label_2 = label_2;
@@ -244,16 +244,16 @@ public class Llvm {
      }
      public Br(String label_1) {
          this.type = new Llvm.Int();
-         this.label_2 = "ABSENT";
-         this.condition_value = "ABSENT";
+         //this.label_2 = "ABSENT";
+         //this.condition_value = "ABSENT";
          this.label_1 = label_1;
      }
 
      @Override
      public String toString() {
          String to_return="br ";
-         if(this.label_2.equals("ABSENT")){
-        to_return += label_1+ "\n";
+         if(this.label_2==null){//if(this.label_2.equals("ABSENT")){
+        to_return += "label"+label_1+ "\n";
         return to_return;
          }
          to_return+=type.toString()+" "+condition_value+", label"+ label_1+", label" +label_2+"\n";
@@ -264,15 +264,16 @@ public class Llvm {
     String cond_value;
     Type type;
     String lvalue;
-    public Icmp(Type type ,String eq ,String lvalue){
-        this.cond_value=eq;
+    public Icmp(Type type ,String cond_value ,String lvalue){
+        this.cond_value=cond_value;
         this.lvalue=lvalue;
         this.type=type;
     }
      @Override
      public String toString() {
-         return lvalue+" icmp ne "+type.toString()+" "+cond_value+","+" 0\n";     }
+         return lvalue+"= icmp ne "+type.toString()+" "+cond_value+","+" 0\n";     }
  }
+
 
 
   // TODO : other instructions
