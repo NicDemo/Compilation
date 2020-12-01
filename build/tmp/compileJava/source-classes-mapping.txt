@@ -1,9 +1,9 @@
-TP2/ASD/IF.java
- TP2.ASD.IF
-TP2/ASD/MulExpression.java
- TP2.ASD.MulExpression
 TP2/ASD/StringExpression.java
  TP2.ASD.StringExpression
+TP2/ASD/MulExpression.java
+ TP2.ASD.MulExpression
+TP2/ASD/IF.java
+ TP2.ASD.IF
 TP2/ASD/Int.java
  TP2.ASD.Int
 TP2/ASD/IntegerDeclaration.java
@@ -34,8 +34,10 @@ TP2/Llvm.java
  TP2.Llvm$Type
 TP2/ASD/AffectationInstruction.java
  TP2.ASD.AffectationInstruction
-TP2/Main.java
- TP2.Main
+TP2/ASD/VariableExpression.java
+ TP2.ASD.VariableExpression
+TP2/DeclarationException.java
+ TP2.DeclarationException
 TP2/SymbolTable.java
  TP2.SymbolTable
  TP2.SymbolTable$FunctionSymbol
@@ -54,16 +56,11 @@ TP2/Utils.java
  TP2.Utils$LLVMStringConstant
 TP2/TypeException.java
  TP2.TypeException
-TP2/VSLParser.java
- TP2.VSLParser
- TP2.VSLParser$DeclarationContext
- TP2.VSLParser$ExpressionContext
- TP2.VSLParser$FactorContext
- TP2.VSLParser$InstructionContext
- TP2.VSLParser$PrimaryContext
- TP2.VSLParser$ProgramContext
-TP2/ASD/VariableExpression.java
- TP2.ASD.VariableExpression
+TP2/UndeclaredVariableExeption.java
+ TP2.UndeclaredVariableExeption
+TP2/ASD/Instruction.java
+ TP2.ASD.Instruction
+ TP2.ASD.Instruction$RetInstruction
 TP2/ASD/IntegerExpression.java
  TP2.ASD.IntegerExpression
 TP2/ASD/While.java
@@ -73,6 +70,13 @@ TP2/ASD/Expression.java
  TP2.ASD.Expression$RetExpression
 TP2/ASD/DivExpression.java
  TP2.ASD.DivExpression
-TP2/ASD/Instruction.java
- TP2.ASD.Instruction
- TP2.ASD.Instruction$RetInstruction
+TP2/VSLParser.java
+ TP2.VSLParser
+ TP2.VSLParser$DeclarationContext
+ TP2.VSLParser$ExpressionContext
+ TP2.VSLParser$FactorContext
+ TP2.VSLParser$InstructionContext
+ TP2.VSLParser$PrimaryContext
+ TP2.VSLParser$ProgramContext
+TP2/Main.java
+ TP2.Main
