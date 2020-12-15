@@ -26,7 +26,7 @@ public class AffectationInstruction extends TP2.ASD.Instruction {
 	public RetInstruction toIR(SymbolTable symbolTable) throws TypeException, Exception {
 		Expression.RetExpression retexpression = exp.toIR(symbolTable);
 		VariableSymbol symbol = (VariableSymbol) symbolTable.lookup(id);
-		if (null != symbol) {// id est dans tabsymb
+		if (null != symbol) {// id est dans tabsymb //&&retexpression.type!=null
 			if (retexpression.type.equals(symbol.getType())) {// pas de types mismatch
 				Llvm.Instruction aff;
 				aff = new Llvm.Affect(retexpression.type.toLlvmType(), id, retexpression.result);// Instruction de affectation

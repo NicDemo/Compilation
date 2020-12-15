@@ -4,10 +4,11 @@ import TP2.Llvm;
 
 import TP2.SymbolTable;
 import TP2.TypeException;
+import TP2.WrongParamFunctionCall;
 
 public abstract class Expression {
     public abstract String pp();
-    public abstract Expression.RetExpression toIR(SymbolTable symbolTable) throws TypeException;
+    public abstract Expression.RetExpression toIR(SymbolTable symbolTable) throws TypeException, WrongParamFunctionCall;
 
     // Object returned by toIR on expressions, with IR + synthesized attributes
     static public class RetExpression {

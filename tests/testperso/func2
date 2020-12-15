@@ -1,0 +1,4 @@
+
+FUNC VOID main(){
+PRINT 2,3
+}

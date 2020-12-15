@@ -39,10 +39,15 @@ ACCOLADE_FERME : '}';
 WHILE : 'WHILE';
 DO : 'DO';
 DONE : 'DONE';
-
-
+FUNC : 'FUNC';
+PROTO : 'PROTO';
+RETURN : 'RETURN';
+PRINT : 'PRINT';
+READ : 'READ';
 // other tokens (no conflict with keywords in VSL)
 IDENT   : LETTER (LETTER|DIGIT)*;
 TEXT    : '"' (ASCII)* '"' { setText(getText().substring(1, getText().length() - 1)); };
 INTEGER : (DIGIT)+ ;
 INT_DECLARATION : 'INT';
+VOID_DECLARATION :'VOID';
+

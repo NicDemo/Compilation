@@ -1,0 +1,11 @@
+PROTO VOID main ()
+PROTO INT crack(a,b)
+FUNC INT crack(a,b){
+WHILE 2 DO {INT c c:= 2 RETURN 1} DONE}
+FUNC VOID main (){
+WHILE 2 DO {
+INT x,y,z x:= 3 z:=1
+x:=crack(1,2)
+}
+DONE}
+}

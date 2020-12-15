@@ -1,1 +1,1 @@
-{WHILE 2 DO {INT a a:=b} DONE}
+{WHILE 2 DO {INT a a:=1} DONE}{IF 1 THEN (INT a) FI}

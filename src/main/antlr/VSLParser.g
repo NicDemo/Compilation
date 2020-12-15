@@ -13,13 +13,28 @@ options {
 }
 
 program returns [TP2.ASD.Program out]
- // test une line de declaration: d =declaration EOF {$out=new TP2.ASD.Program($d.out);}
-  //test expression simple  : e=expression EOF { $out = new TP2.ASD.Program($e.out); }
-  : {ArrayList<TP2.ASD.Instruction> inst= new ArrayList<>();} (i = instruction {inst.add($i.out);} )* EOF
-  { $out = new TP2.ASD.Program(inst);}
+    : {ArrayList<TP2.ASD.ABSFunction> programme =new ArrayList<>();}
+    (f=function {programme.add($f.out);})+
+    {$out = new TP2.ASD.Program(programme);} EOF
     ;
-    
-    
+
+
+function returns [TP2.ASD.ABSFunction out]
+// FUNCTION
+:{ArrayList<String> params = new ArrayList<>();TP2.ASD.Type type;}
+FUNC (INT_DECLARATION{type = new TP2.ASD.Int();}|
+VOID_DECLARATION{type = new TP2.ASD.Void();}) name = IDENT
+(LP (i= IDENT {params.add($i.getText());})* RP)
+ ACCOLADE_OUVERT (inst = instruction) ACCOLADE_FERME
+{$out = new TP2.ASD.Function(type,$name.getText(),params,$inst.out);}
+|
+// PROTOTYPE
+PROTO {ArrayList<String> params = new ArrayList<>();TP2.ASD.Type type;}
+(INT_DECLARATION {type = new TP2.ASD.Int();}|VOID_DECLARATION {type = new TP2.ASD.Void();})
+name = IDENT (arg = IDENT {params.add($arg.getText());})*
+{$out = new TP2.ASD.Protot(type,$name.getText(),params);}
+;
+
 instruction returns [TP2.ASD.Instruction out]
     //BLOC
     :ACCOLADE_OUVERT
@@ -29,7 +44,7 @@ instruction returns [TP2.ASD.Instruction out]
     {$out=new TP2.ASD.Bloc(decs,instructions);}
     ACCOLADE_FERME
     //IF
-      |IF cond = expression THEN  	{boolean a = false;}
+      |IF cond = expression THEN {boolean a = false;}
       	(i=instruction)
       	(ELSE (i1=instruction){a=true;})?
       	FI
@@ -42,6 +57,13 @@ instruction returns [TP2.ASD.Instruction out]
     |WHILE (cond=expression) DO (i=instruction) DONE {$out=new TP2.ASD.While($cond.out,$i.out);}
 	// Affectation
 	|ident =IDENT AFFECT e = expression {$out=new TP2.ASD.AffectationInstruction($ident.getText(),$e.out); }
+    //RETURN
+    |RETURN e=expression {$out = new TP2.ASD.Return($e.out);}
+    //PRINT
+    |PRINT {ArrayList<TP2.ASD.Expression> expressions = new ArrayList<>();}
+     		(e = expression {expressions.add($e.out);} VIRGULE)* (e2=expression {expressions.add($e2.out);})
+     		{$out = new TP2.ASD.Print(expressions);}
+    |READ id=IDENT {$out = new TP2.ASD.Read($id.getText());}
    ;
 
 declaration returns [ArrayList<TP2.ASD.DeclInstruction> out]
@@ -62,6 +84,11 @@ expression returns [TP2.ASD.Expression out]
 factor returns [TP2.ASD.Expression out]
     : p=primary { $out = $p.out; }
     |id=IDENT {$out = new TP2.ASD.VariableExpression($id.getText());}
+    //functionRez
+    |id = IDENT LP {ArrayList<TP2.ASD.Expression> expressions = new ArrayList<>();}
+    (exp = expression{expressions.add($exp.out);}
+     (VIRGULE exp2 = expression {expressions.add($exp2.out);})*)? RP
+     {$out = new TP2.ASD.RezFunction($id.getText(),expressions);}
     // TODO : that's all?
     ;
 

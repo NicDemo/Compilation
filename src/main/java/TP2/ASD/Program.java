@@ -7,32 +7,34 @@ import TP2.TypeException;
 import java.util.ArrayList;
 
 public class Program {
-
+    ArrayList<ABSFunction> funs ;
    ArrayList <Instruction> instructions;
    SymbolTable symbolTable;// What a program contains. TODO : change when you extend the language
-    public Program(ArrayList<Instruction> instruction) {
-      this.instructions=instruction;
+    public Program(ArrayList<ABSFunction> funs) {
+      this.funs=funs;
       this.symbolTable=new SymbolTable();
     }
 
     // Pretty-printer
     public String pp() {
-        String s="";
-        for(Instruction p : instructions) {
-
-           s=s+p.pp()+"\n";
+        String toReturn = "";
+        for(ABSFunction f :this.funs) {
+            if(f!=null){
+            toReturn += f.pp();
+            toReturn += "\n";}
         }
-        return s;
+        return toReturn;
     }
+
 
     // IR generation
     public Llvm.IR toIR() throws Exception {
       // TODO : change when you extend the language
         ArrayList<Instruction.RetInstruction> ret_instructions = new ArrayList<Instruction.RetInstruction>();
         Instruction.RetInstruction toReturn = new Instruction.RetInstruction(new Llvm.IR(Llvm.empty(), Llvm.empty()));
-        for(Instruction p : instructions){
-     toReturn.ir.append(p.toIR(symbolTable).ir);
+        for(ABSFunction f :funs){
+            toReturn.ir.append(f.toIR(symbolTable).ir);
         }
-return toReturn.ir;
+        return toReturn.ir;
     }
   }

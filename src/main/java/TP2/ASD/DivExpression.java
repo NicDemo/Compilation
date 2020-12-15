@@ -14,7 +14,7 @@ public class DivExpression extends Expression {
 	public String pp() {
 		return ("("+ left.pp() + "/" + right.pp() +")");
 	}
-	 public RetExpression toIR(SymbolTable symbolTable) throws TypeException{
+	 public RetExpression toIR(SymbolTable symbolTable) throws TypeException, WrongParamFunctionCall {
 	      RetExpression leftRet = left.toIR(symbolTable);
 	      RetExpression rightRet = right.toIR(symbolTable);
 
