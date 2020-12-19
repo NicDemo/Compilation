@@ -381,6 +381,7 @@ public class Llvm {
             @Override
             public String toString() {
                 String rez = "call "+this.type.toString()+" @"+name+"(";
+                if(arg!=null){
                 if(arg.size()>0) {
                     for (int i = 0; i < arg.size()-1; i++) {
                         rez += arg.get(i).type.toLlvmType().toString() + " " + arg.get(i).result + ", ";
@@ -388,10 +389,9 @@ public class Llvm {
                     rez += arg.get(arg.size()-1).type.toLlvmType().toString() + " " +
                             arg.get(arg.size()-1).result + ")\n";
                 }
-                else{
-                    rez+=")\n";
                 }
-                return rez;
+                return rez+")\n";
             }
         }
+
 }

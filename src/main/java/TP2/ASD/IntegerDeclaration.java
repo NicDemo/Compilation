@@ -29,7 +29,7 @@ public class IntegerDeclaration extends DeclInstruction {
             }
         }// on ajoute le Symbol correspondant a this dans la table symb
         ArrayList<Llvm.Instruction> inst = new ArrayList<>();
-        Llvm.Decl declinst= new Llvm.Decl(new Int().toLlvmType(),id );
+        Llvm.Decl declinst= new Llvm.Decl(new Int().toLlvmType(),id);
         inst.add(declinst);
         Llvm.IR ir = new Llvm.IR(Llvm.empty(),inst);
         RetInstruction ret = new RetInstruction(ir);

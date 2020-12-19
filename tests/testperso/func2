@@ -1,4 +1,33 @@
-
-FUNC VOID main(){
-PRINT 2,3
+PROTO VOID main()
+PROTO INT add(a,b)
+PROTO VOID printer()
+FUNC VOID printer(){
+   {
+    INT a
+    a:=4
+    PRINT a
+    }
 }
+FUNC INT add(a,b){
+    {
+    INT c
+    c:=3
+    RETURN c
+    }
+}
+FUNC VOID main(){
+  {
+    INT v, q
+    v:=3
+    IF 2 THEN
+        {INT a a:=v+1}
+    ELSE {
+        INT b b:=3 PRINT b READ c
+    }
+        FI
+    WHILE v DO {
+        v:=add(v,1)
+    }DONE
+  }
+}
+
