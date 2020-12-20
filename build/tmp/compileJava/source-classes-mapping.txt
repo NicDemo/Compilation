@@ -47,8 +47,8 @@ TP2/ASD/AffectationInstruction.java
 TP2/ASD/ABSFunction.java
  TP2.ASD.ABSFunction
  TP2.ASD.ABSFunction$RetFunction
-TP2/Main.java
- TP2.Main
+TP2/ASD/Print.java
+ TP2.ASD.Print
 TP2/ASD/Protot.java
  TP2.ASD.Protot
 TP2/DeclarationException.java
@@ -62,8 +62,8 @@ TP2/ASD/Read.java
  TP2.ASD.Read
 TP2/ASD/DeclInstruction.java
  TP2.ASD.DeclInstruction
-TP2/ASD/Program.java
- TP2.ASD.Program
+TP2/ASD/StringType.java
+ TP2.ASD.StringType
 TP2/ASD/Bloc.java
  TP2.ASD.Bloc
 TP2/VSLLexer.java
@@ -99,8 +99,10 @@ TP2/ASD/Expression.java
  TP2.ASD.Expression$RetExpression
 TP2/ASD/DivExpression.java
  TP2.ASD.DivExpression
-TP2/ASD/Print.java
- TP2.ASD.Print
+TP2/ASD/Program.java
+ TP2.ASD.Program
+TP2/Main.java
+ TP2.Main
 TP2/VSLParser.java
  TP2.VSLParser
  TP2.VSLParser$DeclarationContext
@@ -110,5 +112,3 @@ TP2/VSLParser.java
  TP2.VSLParser$InstructionContext
  TP2.VSLParser$PrimaryContext
  TP2.VSLParser$ProgramContext
-TP2/ASD/StringType.java
- TP2.ASD.StringType

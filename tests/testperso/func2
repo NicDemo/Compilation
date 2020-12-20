@@ -17,7 +17,7 @@ FUNC INT add(a,b){
 }
 FUNC VOID main(){
   {
-    INT v, q
+    INT b,q,v
     v:=3
     IF 2 THEN
         {INT a a:=v+1}
