@@ -28,6 +28,7 @@ FUNC VOID main(){
     WHILE v DO {
         v:=add(v,1)
     }DONE
+    q:=2*4/5
   }
 }
 

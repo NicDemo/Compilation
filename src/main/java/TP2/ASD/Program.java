@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Program {
     ArrayList<ABSFunction> funs ;
-   ArrayList <Instruction> instructions;
    SymbolTable symbolTable;// What a program contains. TODO : change when you extend the language
     public Program(ArrayList<ABSFunction> funs) {
       this.funs=funs;

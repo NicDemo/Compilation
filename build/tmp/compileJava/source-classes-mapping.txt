@@ -110,3 +110,5 @@ TP2/VSLParser.java
  TP2.VSLParser$InstructionContext
  TP2.VSLParser$PrimaryContext
  TP2.VSLParser$ProgramContext
+TP2/ASD/StringType.java
+ TP2.ASD.StringType
